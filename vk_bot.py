@@ -2,7 +2,7 @@ import vk_api, json
 from vk_api.longpoll import VkLongPoll, VkEventType
 import carousels
 
-vk_session = vk_api.VkApi(token='4d99d5546e448556c66a9a010b139665de63779331f7fa04414ab7456e8358326df6adb7b738ecd8149b5')
+vk_session = vk_api.VkApi(token= )
 vk = vk_session.get_api()
 longpol = VkLongPoll(vk_session)
 
@@ -63,7 +63,6 @@ def sender(id, text, car):
 
 def answer(id, text):
     vk_session.method('messages.send', {'user_id': id, 'message': text, 'random_id': 0, 'keyboard': keyboard})
-
 
 
 def main():
