@@ -1,8 +1,9 @@
 import vk_api, json
 from vk_api.longpoll import VkLongPoll, VkEventType
-import carousels
+from chat_bot import carousels
+from . import token_vk
 
-vk_session = vk_api.VkApi(token= )
+vk_session = vk_api.VkApi(token=token_vk.vk_tok)
 vk = vk_session.get_api()
 longpol = VkLongPoll(vk_session)
 
@@ -43,7 +44,7 @@ flour = str(flour.decode('utf-8'))
 
 
 def checker(x):
-    file = open('data.txt', 'r', encoding='utf8')
+    file = open('data_users_id.txt', 'r', encoding='utf8')
     if str(x) in file.read():
         return 1
     else:
@@ -52,7 +53,7 @@ def checker(x):
 
 
 def data_collect(x):
-    file = open('data.txt', 'a', encoding='utf8')
+    file = open('data_users_id.txt', 'a', encoding='utf8')
     file.write(f'{x}\n')
     file.close()
 
