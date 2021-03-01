@@ -1,5 +1,18 @@
-import json
+import mysql.connector
+from mysql.connector import Error
+from . import db
 
+
+my_db = mysql.connector.connect(
+    host='localhost',
+    user='root',
+    password='',
+    database='vk_chatbot_db'
+)
+
+select_db = "SELECT * from vk_chatbot_db.merchandise"
+my_cursor = my_db.cursor()
+products = db.execute_read_query(my_db, select_db)
 
 categories = {
     "type": "carousel",
@@ -11,7 +24,7 @@ categories = {
         "buttons": [{
             "action": {
                 "type": "text",
-                "label": "пирожки",
+                "label": products[4][0],
                 "payload": "{}"
             }
         }]
@@ -24,7 +37,7 @@ categories = {
         "buttons": [{
             "action": {
                 "type": "text",
-                "label": "кондитерские изделия",
+                "label": products[0][0],
                 "payload": "{}"
             }
         }]
@@ -37,7 +50,7 @@ categories = {
         "buttons": [{
             "action": {
                 "type": "text",
-                "label": "мучные изделия без начинки",
+                "label": products[2][0],
                 "payload": "{}"
                 }
             }]
@@ -57,7 +70,7 @@ cat_pies = {
         "buttons": [{
             "action": {
                 "type": "text",
-                "label": "пирожок с мясом",
+                "label": products[5][1],
                 "payload": "{}"
             }
         }]
@@ -70,7 +83,7 @@ cat_pies = {
         "buttons": [{
             "action": {
                 "type": "text",
-                "label": "пирожок с яйцом и зеленью",
+                "label": products[4][1],
                 "payload": "{}"
                 }
             }]
@@ -89,7 +102,7 @@ cat_conf_products = {
         "buttons": [{
             "action": {
                 "type": "text",
-                "label": "печенье",
+                "label": products[0][1],
                 "payload": "{}"
             }
         }]
@@ -102,7 +115,7 @@ cat_conf_products = {
         "buttons": [{
             "action": {
                 "type": "text",
-                "label": "пряник",
+                "label": products[1][1],
                 "payload": "{}"
                 }
             }]
@@ -121,7 +134,7 @@ cat_flour_products = {
         "buttons": [{
             "action": {
                 "type": "text",
-                "label": "крендель",
+                "label": products[2][1],
                 "payload": "{}"
             }
         }]
@@ -134,7 +147,7 @@ cat_flour_products = {
         "buttons": [{
             "action": {
                 "type": "text",
-                "label": "слойка",
+                "label": products[3][1],
                 "payload": "{}"
                 }
             }]

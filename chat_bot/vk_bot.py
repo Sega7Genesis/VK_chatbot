@@ -1,11 +1,13 @@
 import vk_api, json
+import os
 from vk_api.longpoll import VkLongPoll, VkEventType
 from chat_bot import carousels
-from . import token_vk
+from chat_bot import tok_vk
 
-vk_session = vk_api.VkApi(token=token_vk.vk_tok)
+vk_session = vk_api.VkApi(token=tok_vk.vk_tok)
 vk = vk_session.get_api()
 longpol = VkLongPoll(vk_session)
+path = os.getcwd()
 
 
 def get_but(text, color):
@@ -44,7 +46,7 @@ flour = str(flour.decode('utf-8'))
 
 
 def checker(x):
-    file = open('data_users_id.txt', 'r', encoding='utf8')
+    file = open(path + '/chat_bot/data.txt', 'r', encoding='utf8')
     if str(x) in file.read():
         return 1
     else:
@@ -53,7 +55,7 @@ def checker(x):
 
 
 def data_collect(x):
-    file = open('data_users_id.txt', 'a', encoding='utf8')
+    file = open(path + '/chat_bot/data.txt', 'a', encoding='utf8')
     file.write(f'{x}\n')
     file.close()
 
@@ -84,34 +86,34 @@ def main():
                 if msg == 'посмотреть список товаров':
                     sender(id, 'вот, глянь', car)
 
-                if msg == 'пирожки':
+                if msg == carousels.products[4][0]:
                     sender(id, 'наш ассортимент пирожков', pies)
 
                 if msg == 'назад':
                     sender(id, 'возвращение в исходный каталог', car)
 
-                if msg == 'кондитерские изделия':
+                if msg == carousels.products[0][0]:
                     sender(id, 'наш ассортимент кондитерских изделий', conf)
 
-                if msg == 'мучные изделия без начинки':
+                if msg == carousels.products[2][0]:
                     sender(id, 'наш ассортимент мучных изделий без начинки', flour)
 
-                if msg == 'печенье':
+                if msg == carousels.products[0][1]:
                     answer(id, 'Небольшие кусочки печеного сладкого теста.')
 
-                if msg == 'пряник':
+                if msg == carousels.products[1][1]:
                     answer(id, 'Мучное кондитерское изделие, выпекаемое из специального пряничного теста.')
 
-                if msg == 'пирожок с мясом':
+                if msg == carousels.products[5][1]:
                     answer(id, 'Небольшое кулинарное изделие из дрожжевого или слоёного пресного теста с начинкой из мяса внутри, которое выпекается в печи или жарится во фритюре.')
 
-                if msg == 'пирожок с яйцом и зеленью':
+                if msg == carousels.products[4][1]:
                     answer(id, 'Небольшое кулинарное изделие из дрожжевого или слоёного пресного теста с начинкой из яйца и зелени внутри, которое выпекается в печи или жарится во фритюре.')
 
-                if msg == 'крендель':
+                if msg == carousels.products[2][1]:
                     answer(id, 'Хлебобулочное изделие из сдобного теста, напоминающее своим видом букву «В».')
 
-                if msg == 'слойка':
+                if msg == carousels.products[3][1]:
                     answer(id, 'Изделие из слоенного теста')
 
 
